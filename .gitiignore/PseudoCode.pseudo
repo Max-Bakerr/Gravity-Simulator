@@ -1,0 +1,173 @@
+for planet in planetsList
+    planetList[planet].calculateResultantForce(planetsList)
+    planetList[planet].updateVelocity()
+    planetList[planet].updatePosition()
+next planet
+
+
+class Planet 
+    private name 
+    private mass 
+    private radius 
+    private position 
+    private velocity 
+    private acceleration
+    private trailPath 
+    private label
+
+    public procedure new(givenName, givenMass, givenPosition, givenVelocity, givenTP)
+        name = givenName
+        mass = givenMass
+        position = givenPosition 
+        velocity = givenVelocity
+        acceleration = 0
+        trailPath = givenTP
+        label = new Label(name, position)
+    end procedure 
+
+    public procedure getRadius(mass)
+        radius = mass * k 
+        //k is an undecided constant 
+    end procedure 
+
+    public procedure distanceToPlanet(otherPlanetPositon)
+        distance = -1
+        distance = sqrt((otherPlanetPosition.x - position.x)^2 + (otherPlanetPosition.y - position.y)^2)
+        return distance 
+    end procedure 
+
+    public procedure applyGravitationalForce(otherPlanetMass)
+        force = -1
+        force = (G * mass * otherPlanetMass) / distanceToPlanet(otherPlanetPosition)^2
+        return force 
+    end procedure
+
+    public procedure calculateResultantForce(planetList)
+        resultantForce = 0
+        for planet in planetList
+            resultantForce += applyGravitationalForce(otherPlanetMass)
+        next planet 
+        acceleration = resultantForce/mass
+    end procedure 
+    
+    public procedure updateVelocity()
+        velocity = velocity + acceleration * dt
+    end procedure 
+
+    public procedure updatePosition()
+        position = position + velocity * dt 
+    end procedure 
+
+end class 
+
+
+class Label 
+    private display 
+    private position 
+
+    public procedure new(givenDisplay, initialPositon)
+        display = givenDisplay
+        position = intialPosition 
+    end procedure 
+
+    public procedure updatePosition(planetPositon)
+        position = planetPosition
+    end procedure 
+
+end class 
+
+class TrailPath
+    private points 
+    private maxLength
+    private currentLength 
+
+    public procedure new(givenPoints)
+        points = givenPoint
+    end procedure 
+
+    public procedure addPoint(position)
+        if currentLength < maxLength    
+            points[lastPoint] = new TrailPathPoint(position)
+        else 
+            points[firstPoint].delete 
+            points[lastPoint] = new TrailPathPoint(position)
+        endif
+    end procedure         
+
+end class
+
+class TrailPathPoints 
+    private position 
+
+    public procedure new(givenPosition)
+        position = givenPosition
+    end procedure
+
+end class
+
+class SpaceTimeGrid
+    private dimensions
+    private numberOfVertices
+    private verticesList 
+
+    public procedure new(givenDimensions, givenNumberOfVertices)
+        dimensions = givenDimensions
+        numberOfVertices = givenNumberOfVertices
+        verticesList = createVertices()
+    end procedure
+
+    public createVertices()
+        for x = min to max
+            for y = min to max
+                verticesList.add(new Vertex(x,y))
+            next y
+        next x 
+    end procedure 
+
+    public procedure updateGrid()
+        for vertexID in verticesList
+            verticesList[vertexID].calculateDisplacement
+    end procedure
+
+class Vertex 
+    private ID
+    private position
+    
+    public procedure new(givenID, givenPosition)
+        ID = givenID
+        position = givenPosition
+    end procedure
+
+    public procedure getDistanceTo(planetPosition)
+        distance = -1
+        distance = sqrt((position.x - planetPosition.x)^2 + (position.y - planetPosition.y)^2)
+        return distance  
+    end procedure
+
+    public procedure calculateDisplacement(planetList)
+        displacement = 0
+        for planet in planetList
+            displacement += -k * (mass of planet) / (distance to planet)^2
+        next planet 
+        position.z = displacement 
+    end procedure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
