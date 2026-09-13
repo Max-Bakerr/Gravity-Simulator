@@ -1,0 +1,29 @@
+# Compiled output
+app
+NewApp
+*.o
+*.out
+a.out
+*.dSYM/
+
+# Prototype binaries (sources in prototypes/ are tracked, builds are not)
+prototypes/testing4
+prototypes/planet_class
+prototypes/Planet_Class_1
+prototypes/TrailPathClass
+prototypes/Testing
+prototypes/Contents/
+prototypes/emsdk/
+
+# Runtime state
+imgui.ini
+
+# macOS
+.DS_Store
+
+# Editors
+*.swp
+.idea/
+
+# Local Dear ImGui clone (see README for how to build against it)
+imgui/
