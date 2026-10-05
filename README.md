@@ -1,16 +1,10 @@
-# Gravity Simulator
+A-level computing NEA
+Scored 69/70 - highest score ever awarded by my school:
 
-An interactive N-body gravity simulator in C++ with real-time 3D rendering,
-written as my A-level Computer Science NEA. It scored 69/70 — the highest mark
-the school had awarded for the coursework.
-
-The distinctive feature is the **spacetime grid**: a deformable mesh rendered
-beneath the bodies that curves in response to their masses, giving a visual
-analogue of gravitational potential alongside the Newtonian simulation driving
-the motion.
+The full write-up — analysis, design, development and evaluation, 213 pages — is in
+[docs/nea-writeup.pdf](docs/nea-writeup.pdf).
 
 ## What it does
-
 - N-body gravitational simulation with configurable masses, positions and velocities
 - A deformable spacetime grid visualising the potential well around each body
 - Persistent orbital trails, so the shape of each orbit is visible as it develops
@@ -29,25 +23,13 @@ orbits evolve at a watchable rate at screen distances.
 
 ```
 gravity_simulator.cpp   the simulator
-prototypes/             development history — see below
+prototypes/             22 incremental programs written while building it
 imgui*.h, imconfig.h    vendored Dear ImGui headers
+docs/                   the A-level write-up
 ```
 
-### prototypes/
-
-Twenty-two incremental programs written while building the simulator, kept
-because they document how it was developed rather than just where it ended up.
-They run roughly in this order:
-
-`IntroducingVector` → `IntroducingGravity` → `circle` → `OneSphere` →
-`CreateSphere` → `2_Planet` → `Planet_Class_1..3` → `TrailPathClass` →
-`STGrid` → `STGridVersion4` → `3D` → `3D2` → `Label_Class` → `FrontEND1` →
-`Stage5` → `Emscripten2`
-
-`PseudoCode.pseudo` holds the original design notes.
 
 ## Building
-
 Requires a C++17 compiler and, as system libraries:
 
 - [GLFW](https://www.glfw.org/) — windowing and input
